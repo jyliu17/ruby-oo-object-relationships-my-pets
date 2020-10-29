@@ -44,34 +44,26 @@ class Owner
   end
 
   def walk_dogs
-    dogs.collect do |dog_instance|
-      dog_instance.mood = "happy"
+    dogs.each do |dog|
+      dog.mood = "happy"
     end
   end
 
   def feed_cats
-    cats.collect {|cat_instance| cat_instance.mood = "happy"}
+    cats.each {|cat| cat.mood = "happy"}
   end
 
   def sell_pets
-    pets = cats.concat(dogs)
-    
-    pets.collect do |pet_instance|
-      pet_instance.mood = "nervous"
+    all_pets = dogs + cats
 
-    pet_instance.owner = nil
-
+    all_pets.each do |all_pet|
+      all_pet.mood = "nervous"
+      all_pet.owner = nil
     end
-    pets.clear
-    
   end
 
   def list_pets
-   "I have #{dogs.count} dog(s), and #{cats.count} cat(s)."
+   "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
   end
-
-
-
-
 
 end
